@@ -1,0 +1,101 @@
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>News Feed</title>
+</head>
+
+<body>
+<button onclick="restart()">Restart</button><span><button onclick="reload()">Clear</button></span>
+
+<form action="" width="30px" width="30px">
+
+    <label for="ID">ID</label><br>
+    <input type="number" id="input1" name="ID" required><br>
+
+    <lable for="txtLastName">Headline</lable><br>
+    <input type="text" id="input2" name="Headline" required><br>
+
+    <lable for="contents">Contents</lable><br>
+    <input type="text" id="input3" name="contents" required><br>
+
+    <button type="button" onclick="storeInput()">Submit</button>
+
+</form>
+
+    <template id="news-template">
+        <div class="news">
+            <div class="news-body">
+                <div class="news-title"></div>
+                <div class="news-heading"></div>
+                <div class="news-text"></div>
+            </div>
+        </div>
+    </template>
+
+    <div id="news-list"></div>
+
+    <script>
+        let news = [
+            {
+                id: 1, title: 'Election Results',
+                content: "Newly elected minister..."
+            },
+            {
+                id: 2, title: 'Sporting Success',
+                content: "World Cup winners..."
+            },
+            {
+                id: 3, title: 'Tornado Warning',
+                content: "Residents should prepare..."
+            }
+        ];
+
+        function newsCard() {
+            let template;
+            document.getElementById('news-list').innerHTML = "" // makes the template blank
+            for (let i = 0; i < news.length; i++) {
+                // news template is called
+                template = 
+                    document.getElementById("news-template")
+                        .content.cloneNode(true);
+                // template is populated with the 3 elements of the arary
+                template.querySelector('.news-title').innerText = 
+                    news[i].id;
+                template.querySelector('.news-heading').innerText = 
+                    news[i].title;
+                template.querySelector('.news-text').innerText = 
+                    news[i].content;
+                
+                document.querySelector('#news-list')// include the populated template into the page
+                    .appendChild(template);
+
+            }
+        }; 
+
+setInterval(newsCard, 2000); // repeats the template every 5 seconds
+
+//setTimeout( () => news.push({id: 4, title: 'Football Scores',content: "NCL 1 - 0 MUN"}),5000)
+
+function storeInput() {
+
+    const input1 = document.getElementById("input1"); // gets inputs from boxes
+    const input2 = document.getElementById("input2");
+    const input3 = document.getElementById("input3");
+
+    const value1 = input1.value;
+    const value2 = input2.value;
+    const value3 = input3.value;
+
+news.push({id:value1, title:value2, content:value3});
+}
+
+function reload(){
+    location.reload()
+}
+    </script>
+
+</body>
+
+</html>

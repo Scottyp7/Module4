@@ -1,0 +1,89 @@
+<html>
+    <head>
+        <title>Moment DateTime Format</title>
+        <!-- reference Moment.js library -->
+        <script
+            src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.4/moment.min.js">
+
+            </script>
+    </head>
+    <body>
+        <h2>Results are in the console</h2>
+
+
+        <script type="text/javascript">
+
+
+    moment().format('MMMM Do YYYY, h:mm:ss a'); // May 22nd 2024, 11:39:29 am
+    moment().format('dddd');                    // Wednesday
+    moment().format("MMM Do YY");               // May 22nd 24
+    moment().format('YYYY [escaped] YYYY');     // 2024 escaped 2024
+    moment().format();
+
+    moment("20111031", "YYYYMMDD").fromNow(); // 13 years ago
+    moment("20120620", "YYYYMMDD").fromNow(); // 12 years ago
+    moment().startOf('day').fromNow();        // 12 hours ago
+    moment().endOf('day').fromNow();          // in 12 hours
+    moment().startOf('hour').fromNow();
+
+    moment().subtract(10, 'days').calendar(); // 05/12/2024
+    moment().subtract(6, 'days').calendar();  // Last Thursday at 11:39 AM
+    moment().subtract(3, 'days').calendar();  // Last Sunday at 11:39 AM
+    moment().subtract(1, 'days').calendar();  // Yesterday at 11:39 AM
+    moment().calendar();                      // Today at 11:39 AM
+    moment().add(1, 'days').calendar();       // Tomorrow at 11:39 AM
+    moment().add(3, 'days').calendar();       // Saturday at 11:39 AM
+    moment().add(10, 'days').calendar();     
+
+
+
+var today = moment([2024, 5, 23]);
+var birthday = moment([1992, 9, 13]);
+
+var years = today.diff(birthday, 'year');
+birthday.add(years, 'years');
+
+var months = today.diff(birthday, 'months');
+birthday.add(months, 'months');
+
+var days = today.diff(birthday, 'days');
+let date4 = moment('1996-09-27',"YYYYMMMDDD").fromNow();
+let date3 = moment('1997-09-27',"YYYYMMMDDD").fromNow();
+
+const today2 = moment()
+const date1 = moment('1992-09-13');
+const date2 = moment('2021-05-23');
+
+//days different from today
+const daysDifference = today2.diff(date1, 'days');
+const daysDifference2 = today2.diff(date1, 'days');
+const daysDifference3 = today2.diff(date2, 'days');
+
+function dateCalc(){
+    const diffOne = Math.abs(daysDifference2)
+    const difftwo = Math.abs(daysDifference3)
+            // returns which day is closer to today
+        return diffOne > difftwo ? diffOne : difftwo; 
+}
+
+//date before or after
+const daysDifference4 = today2.diff(date2, 'days');
+
+function dateCalc2(date1,date2){
+            // returns which date is most recent.
+    let firstDate=moment(date1)
+    let secondDate=moment(date2) 
+        return `Date 1 is ${firstDate <= secondDate ? 'before' : 'after'} Date 2`;
+}
+
+console.log('1. The number of days today and my birthday is ' + daysDifference);
+console.log('2. '+ years + ' years ' + months + ' months ' + days + ' days');
+console.log('3. ' + dateCalc())
+console.log('4 ' + dateCalc2('2021-05-23','2022-05-23'))
+
+var londonTime = moment().utcOffset(1).format('DD/MM/YYYY HH:mm:ss')
+console.log('5. '+ londonTime)
+
+
+</script>
+</html>

@@ -31,6 +31,7 @@
             <div class="card-body">
                 <div class="card-title"></div>
                 <div class="card-text"></div>
+                <img id="img-url">
             </div>
         </div>
     </template>
@@ -50,20 +51,26 @@
 ] }
 
         function addCard() {
+        let template;
+        for( let i = 0; i < artist.portfolio.length; i++){
             // clone the template
-            const template =
+            template =
                 document.getElementById("card-template")
                     .content.cloneNode(true);
             // populate the template
             template.querySelector('.card-title').innerText = // gets the card title which is a div element
                 artist.name;
             template.querySelector('.card-text').innerText = // as above for the 2nd element in data
-                 artist.portfolio;
+                 artist.portfolio[i].title;
+            template.getElementById('img-url').src = // as above for the 2nd element in data
+                 artist.portfolio[i].url;
             // include the populated template into the page
             document.querySelector('#card-list')
                 .appendChild(template);
-        };        
+            
+        }}; alert('this is called')       
         addCard()
+
     </script>
 
 </body>

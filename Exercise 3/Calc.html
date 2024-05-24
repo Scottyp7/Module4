@@ -1,0 +1,87 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculator</title>
+    <link rel="stylesheet" href="calc.css">
+</head>
+<body>
+    <tr>
+        <table id="calculator">
+            <td colspan="3"><input type="text" id="result" value=""></td>
+            <td> <input type="button" value="-" onclick="var1(' - ')"></th>  
+    </tr>
+    <tr id="row2">
+        <td><input type="button" value="1" onclick="var1(1)"></td>
+        <td><input type="button" value="2" onclick="var1(2)"></td>
+        <td><input type="button" value="3" onclick="var1(3)"></td>
+        <td><input type="button" value="+" onclick="var1(' + ')"></td>
+    </tr>
+    <tr id="row3">
+        <td><input id="button1" type="button" value="4" onclick="var1(4)"></td>
+        <td><input type="button" value="5" onclick="var1(5)"></td>
+        <td><input type="button" value="6" onclick="var1(6)"></td>
+        <td><input type="button" value="/" onclick="var1(' / ')"></td>
+    </tr>
+    <tr id="row4">
+        <td><input type="button" value="7" onclick="var1(7)"></td>
+        <td><input type="button" value="8" onclick="var1(8)"></td>
+        <td><input type="button" value="9" onclick="var1(9)"></td>
+        <td><input type="button" value="*" onclick="var1(' * ')"></td>
+    </tr>
+    <tr id="row5">
+        <td><input type="button" value="0" onclick="var1(0)"></td>
+        <td><input type="button" value="." onclick="var1('.')"></td>
+        <td><input type="button" value="C" onclick="cancel()"></td>
+        <td><input type="button" value="=" onclick="getNum1()"></td>
+    </tr>
+
+    </tr>
+    </table>
+
+<script>
+
+function cancel(){
+    let resultClear = "";
+    document.getElementById("result").value = resultClear;
+};
+
+function var1(value1){ // Works
+    let result = document.getElementById("result").value.toString() + value1.toString();
+    document.getElementById("result").value = result;
+    }
+
+function getNum1() {
+        var resultString = document.getElementById('result').value
+console.log(resultString)
+        var numString = resultString.split(" ") // splits result into an array [1, '-', 4] ect
+console.log(numString)
+        calcOperation(parseFloat(numString[0]),parseFloat(numString[2]),numString[1])
+
+    }
+
+function calcOperation(num1, num2, operation) {
+    
+    let number = 0
+    switch (operation) {
+        case "+":
+            number = num1 + num2;
+            break
+        case "-":
+            number = num1 - num2;
+            break
+        case "*":
+            number = num1 * num2;
+            break
+        case "/":
+            number = num1 / num2;
+            break
+        default: return NaN
+    } 
+        number = parseFloat(number.toFixed(2));
+        document.getElementById('result').value = number;
+} 
+
+</script>
+</body>
+</html>
