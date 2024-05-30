@@ -60,9 +60,17 @@
 
 <h2>Products for Sale</h2>
 
+<!--The dropdown menu to select categories is missing. The way to implement this would be-->
+<!--to add a <select> element in the HTML, and then programatically add the categories-->
+<!--in the JavaScript. You'd find the unique categories in the fakestore products, and then-->
+<!--create <option> elements based on that category data and put the <option> elements-->
+<!--in the <select> element. When the user selects the option, you would filter the data-->
+<!--and display the filtered data on the screen.-->
+
 <div id="card-list" class="row"></div>
 
 <script>
+    //The JSON file wasn't included in this repository so this creates an error when I run this
     fetch('FakeStore.json')
         .then((response) => response.json())
         .then((json) => { // json structure
